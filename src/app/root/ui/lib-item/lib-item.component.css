@@ -1,0 +1,34 @@
+.item-body{
+    display: flex;
+    padding: 10px 10px;
+    border-radius: 5px;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+.item-body:hover{
+    background-color: var(--background-highlight);
+}
+.item-body p{
+    margin: 0;
+    text-align: left;
+    font-weight: 400;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.lib-item-text{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.lib-item-title{    font-size: 1rem;
+    color: var(--text-base);
+}
+.lib-item-description{
+    font-size: 0.8125rem;
+    color: var(--text-subdued);
+}
+.item-body img{
+    width: 45px;
+    height: 45px;
+    border-radius: 3px;
+}

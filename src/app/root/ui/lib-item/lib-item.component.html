@@ -1,0 +1,42 @@
+<button class="item-body" *ngIf="albumItem">
+    <img
+    src={{albumItem.album.images[0].url}} 
+    [ngStyle]="{'border-radius': '3px'}" />
+    <div *ngIf="isopened" class="lib-item-text">
+        <p class="lib-item-title">{{albumItem.album.name}}</p>
+        <p class="lib-item-description">
+            {{albumItem.album.artists[0].name}}
+        </p>
+    </div>
+</button>
+<button class="item-body" *ngIf="artistItem && artistItem.images[0]">
+    <img
+    src={{artistItem.images[0].url}} 
+    [ngStyle]="{'border-radius': '50px'}" />
+    <div *ngIf="isopened" class="lib-item-text">
+        <p class="lib-item-title">{{artistItem.name}}</p>
+    </div>
+</button>
+<button class="item-body" *ngIf="playlistItem && playlistItem.images[0]">
+    <img
+    src={{playlistItem.images[0].url}} 
+    [ngStyle]="{'border-radius': '3px'}" />
+    <div *ngIf="isopened" class="lib-item-text">
+        <p class="lib-item-title">{{playlistItem.name}}</p>
+        <p class="lib-item-description">
+            Playlist • 
+            {{playlistItem.tracks.total}} songs
+        </p>
+    </div>
+</button>
+<button class="item-body" *ngIf="podcastItem">
+    <img
+    src={{podcastItem.show.images[0].url}} 
+    [ngStyle]="{'border-radius':'3px'}" />
+    <div *ngIf="isopened" class="lib-item-text">
+        <p class="lib-item-title">{{podcastItem.show.name}}</p>
+        <p class="lib-item-description">
+            {{podcastItem.show.publisher}}
+        </p>
+    </div>
+</button>

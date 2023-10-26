@@ -1,1 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
+
+body{
+    margin: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fafafa00;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--background-tinted-base);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--background-tinted-highlight);
+}
+/* Handle on pressed */
+::-webkit-scrollbar-thumb:active {
+    background: var(--background-tinted-press);
+}
+  
+button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+app-svg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+svg{
+    fill: var(--text-subdued);
+    transition: 0.5s;
+}
+app-svg:hover svg{
+    fill: var(--text-base);
+}
+svg.selected{
+    fill: var(--essential-bright-accent);
+}
+svg.selected:hover{
+    fill: var(--essential-bright-accent);
+}
+:root{
+    --background-base: #121212;
+    --background-highlight: #1a1a1a;
+    --background-press: #000;
+    --background-elevated-base: #242424;
+    --background-elevated-highlight: #2a2a2a;
+    --background-elevated-press: #000;
+    --background-tinted-base: hsla(0,0%,100%,.07);
+    --background-tinted-highlight: hsla(0,0%,100%,.1);
+    --background-tinted-press: hsla(0, 0%, 100%, 0.326);
+    --background-unsafe-for-small-text-base: #121212;
+    --background-unsafe-for-small-text-highlight: #121212;
+    --background-unsafe-for-small-text-press: #121212;
+    --text-base: #fff;
+    --text-active: #000;
+    --text-subdued: #a7a7a7;
+    --text-bright-accent: #1ed760;
+    --text-negative: #f15e6c;
+    --text-warning: #ffa42b;
+    --text-positive: #1ed760;
+    --text-announcement: #3d91f4;
+    --essential-base: #fff;
+    --essential-subdued: #727272;
+    --essential-bright-accent: #1ed760;
+    --essential-negative: #e91429;
+    --essential-warning: #ffa42b;
+    --essential-positive: #1ed760;
+    --essential-announcement: #0d72ea;
+    --decorative-base: #fff;
+    --decorative-subdued: #292929;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

@@ -1,0 +1,108 @@
+.nav{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-base);
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.library{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-base);
+    border-radius: 5px;
+    height: 100%;
+}
+
+.nav li{
+    list-style-type: none;
+}
+.nav a{
+    text-decoration: none;
+    color: var(--text-subdued);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1rem;
+    gap: 20px;
+    height: 40px;
+}
+
+.nav img{
+    width: 24px;
+}
+
+
+.lib-header{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    padding-bottom: 0;
+}
+
+.lib-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.lib-button{  
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-subdued);
+}
+.lib-add{
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    width: 35px;
+    align-items: center;
+}
+.lib-add:hover{
+    background-color: var(--background-highlight);
+}
+
+.lib-button img{
+    width: 23px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.categories{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 8px;
+}
+
+.categories button{
+    color: var(--text-base);
+    background-color: var(--background-elevated-base);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 540;
+    font-size: 13px;
+}
+.categories button:hover{
+    background-color: var(--background-elevated-highlight);
+}
+.categories button:active{
+    background-color: var(--background-elevated-press);
+}
+
+.lib-body{
+    position: relative;
+    flex: 1;
+}
+.lib-body-scroll{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}

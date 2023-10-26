@@ -1,0 +1,37 @@
+<nav class="nav">
+    <li>
+        <a routerLink="" routerLinkActive="active"> <app-svg [name]="'home'"/> {{(LibraryOpened)?'Home':''}}</a>
+    </li>
+    <li>
+        <a routerLink="search" routerLinkActive="active"> <app-svg [name]="'search'"/> {{(LibraryOpened)?'Search':''}}</a>
+    </li>
+</nav>
+<div class="library">
+    <header class="lib-header">
+        <div class="lib-title">
+            <button class="lib-button" (click)="toggleLib()"><app-svg [name]="'library'"/>
+                {{(LibraryOpened)?'Your Library':''}}</button>
+            <button *ngIf="LibraryOpened" class="lib-add">
+                <app-svg [name]="'add'" [width]="30" [height]="30"/>
+            </button>
+        </div>
+        <nav *ngIf="LibraryOpened" class="categories">
+            <button 
+            *ngFor="let category of categories"
+            [ngStyle]="{'background-color': (category==currentCategory)? 'var(--essential-base)':'',
+            'color': (category==currentCategory)? 'var(--text-active)':'',}"
+            (click)="changeCategory(category)">{{category}}</button>
+        </nav>
+    </header>
+    <div #LibraryBody class="lib-body">
+        <div class="lib-body-scroll"
+        [style.height.px]="LibraryBody.getBoundingClientRect().height">
+        <div *ngFor="let item of libraryItems">
+            <app-lib-item 
+            [type]="currentCategory"
+            [item]="item"
+            [isopened]="LibraryOpened"></app-lib-item>
+        </div>
+        </div>
+    </div>
+</div>
