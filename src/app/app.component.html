@@ -5,10 +5,10 @@
       <header>
         <div class="navigations">
           <button>
-            <app-svg [name]="'arrow-back'" [width]="20" [height]="20"/>
+            <app-svg [name]="'arrow-back'" />
           </button>
           <button>
-            <app-svg [name]="'arrow-forward'" [width]="20" [height]="20"/>
+            <app-svg [name]="'arrow-forward'"/>
           </button>
         </div>
         <div class="search">
@@ -16,7 +16,12 @@
         </div>
         <button class="login" (click)="login()">Log in</button>
       </header>
-      <router-outlet></router-outlet>
+      <div #ViewScroll class="view-container">
+          <div class="view-body-scroll"
+              [style.height.px]="ViewScroll.getBoundingClientRect().height">
+            <router-outlet></router-outlet>
+          </div>
+      </div>
     </div>
     <app-player class="player"></app-player>
   </div>

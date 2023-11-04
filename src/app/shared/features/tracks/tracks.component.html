@@ -1,0 +1,43 @@
+<div #TableBody class="table-container">
+        <div class="table-controls"></div>
+        <table class="table" *ngIf="Tracks" >
+            <tr class="table-header">
+                <div class="table-col-1">
+                    <th class="table-index">#</th>
+                    <th>Title</th>
+                </div>
+                <th>Album</th>
+                <th>Date added</th>
+                <th><app-svg [name]="'time'" [width]="18" [height]="18"></app-svg></th>
+            </tr>
+            <tr class="table-data" *ngFor="let track of Tracks.tracks.items; index as i" (click)="playTrack(track.track)">
+                <div class="table-col-1">
+                    <td class="table-index">{{i + 1}}</td>
+                    <td class="table-title">
+                        <img [src]="track.track.album.images[2].url"/>
+                        <div class="table-title-text">
+                            <a class="table-track-title" 
+                            style="color: white;"
+                            routerLink="/track/{{track.track.id}}">
+                            {{track.track.name}}</a>
+                            <span class="table-track-artists">
+                                <a 
+                                class="table-track-artist"
+                                *ngFor="let artist of track.track.artists"
+                                routerLink="/artist/{{artist.id}}">{{artist.name}}, </a>
+                            </span>
+                        </div>
+                    </td>
+                </div>
+                <td class="table-track-album">
+                    <a 
+                    routerLink="/album/{{track.track.album.id}}"
+                    class="table-track-artist table-track-title">
+                    {{track.track.album.name}}
+                    </a>
+                </td>
+                <td class="table-track-date">{{track.added_at}}</td>
+                <td class="table-track-duration">{{msToTime(track.track.duration_ms)}}</td>
+            </tr>
+        </table>
+</div>

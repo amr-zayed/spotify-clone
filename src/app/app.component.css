@@ -34,10 +34,11 @@
     background-color: var(--background-press);
     box-sizing: border-box;
 }
-
 .main-view{
     background-color: var(--background-base);
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
 .main-view header{
     display: flex;
@@ -48,7 +49,17 @@
     height: 40px;
 
 }
-
+.view-container{
+    position: relative;
+    flex: 1;
+}
+.view-body-scroll{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
 .search {
     display: flex;
     width: 100%;
@@ -70,14 +81,17 @@
 .navigations button{
     padding: 0;
     border-radius: 50px;
+    background-color: var(--background-tinted-base);
     transition: 0.5s;
 }
-.navigations button:hover{
-    background-color: var(--background-highlight);
+.navigations button.disabled{
+    background-color: var(--background-tinted-highlight);
+    fill: var(--background-tinted-highlight);
+    cursor: not-allowed;
 }
 .navigations app-svg{
-    width: 35px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
     padding: 5px;
     display: flex;
     justify-content: center;

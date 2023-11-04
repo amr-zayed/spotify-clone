@@ -66,12 +66,42 @@ export interface ArtistsResp {
 export interface Playlist {
     id: string
     collaborative: boolean;
-    description: string;
+    description: string | HTMLDivElement;
     images: image[],
     name: string,
     public: boolean,
     tracks: {
+        href: string,
+        items: {
+            added_at: string,
+            added_by: {
+                external_urls: {
+                    href: string,
+                    id: string,
+                    type: string,
+                    uri: string
+                }, 
+                href: string, 
+                id: string, 
+                type: string,
+                uri: string
+            }
+            is_local: false,
+            track: Track
+        }[],
+        limit: number,
+        next: number,
+        offset: number,
+        previous: number,
         total: number,
+    },
+    owner: {
+        display_name: string,
+        external_urls: {spotify: string}
+        href: string
+        id: string
+        type: string
+        uri: string
     }
 }
 export interface PlaylistsResp {
@@ -88,10 +118,10 @@ export interface Podcast {
     added_at: string,
     show:{
         available_markets: string[],
-        copyrights: [{
+        copyrights: {
             text: string,
             type: string
-        }],
+        }[],
         description: string,
         html_description: string,
         explicit: boolean,
@@ -126,9 +156,137 @@ export interface image {
     height: number,
     width: number,
 }
-
+export interface SimplifiedTrack {
+    artists: [
+    {
+        external_urls: {
+        spotify: string
+        },
+        href: string,
+        id: string,
+        name: string,
+        type: string,
+        uri: string
+    }],
+    available_markets: string[],
+    disc_number: number,
+    duration_ms: number,
+    explicit: boolean,
+    external_urls: {
+        spotify: string
+    },
+    href: string,
+    id: string,
+    is_playable: boolean,
+    linked_from: {
+        external_urls: {
+        spotify: string
+        },
+        href: string,
+        id: string,
+        type: string,
+        uri: string
+    },
+    restrictions: {
+        reason: string
+    },
+    name: string,
+    preview_url: string,
+    track_number: number,
+    type: string,
+    uri: string,
+    is_local: boolean
+}
+export interface Track {
+    album: {
+        album_type: string,
+        total_tracks: number,
+        available_markets: string[],
+        external_urls: {
+            spotify: string
+        },
+        href: string,
+        id: string,
+        images: {
+            url: string,
+            height: number,
+            width: number
+        }[],
+        name: string,
+        release_date: string,
+        release_date_precision: string,
+        restrictions: {
+            reason: string
+        },
+        type: string,
+        uri: string,
+        artists: [
+            {
+            external_urls: {
+                spotify: string
+            },
+            href: string,
+            id: string,
+            name: string,
+            type: string,
+            uri: string
+            }
+        ]
+    },
+    artists: 
+    {
+        external_urls: {
+        spotify: string
+        },
+        followers: {
+            href: string,
+            total: number
+        },
+        genres:string[],
+        href: string,
+        id: string,
+        images: image[]
+        name: string,
+        popularity: number,
+        type: string,
+        uri: string
+    }[],
+    available_markets: string[],
+    disc_number: number,
+    duration_ms: number,
+    explicit: boolean,
+    external_urls: {
+        spotify: string
+    },
+    href: string,
+    id: string,
+    is_playable: boolean,
+    linked_from: {
+        external_urls: {
+        spotify: string
+        },
+        href: string,
+        id: string,
+        type: string,
+        uri: string
+    },
+    restrictions: {
+        reason: string
+    },
+    name: string,
+    preview_url: string,
+    track_number: number,
+    type: string,
+    uri: string,
+    is_local: boolean
+}
 export enum Repeat {
     on,
     off,
     one
+}
+export enum ObjType {
+    playlist,
+    track,
+    album
 }

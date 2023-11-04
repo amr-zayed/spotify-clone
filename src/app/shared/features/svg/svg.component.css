@@ -1,0 +1,10 @@
+.svg{
+    all: inherit;
+    transition: 0.5s;
+}
+.svg.selected{
+    fill: var(--essential-bright-accent);
+}
+.svg.selected:hover{
+    fill: var(--essential-bright-accent);
+}

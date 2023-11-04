@@ -4,7 +4,8 @@
     border-radius: 5px;
     gap: 20px;
     align-items: center;
-    width: 100%;
+    text-decoration: none;
+    /* width: 100%; */
 }
 .item-body:hover{
     background-color: var(--background-highlight);

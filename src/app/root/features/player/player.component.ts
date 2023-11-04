@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Repeat } from 'src/app/shared/utils/dataTypes';
+import { PlayerService } from '../../data-access/player.service';
 
 @Component({
   selector: 'app-player',
@@ -8,21 +9,38 @@ import { Repeat } from 'src/app/shared/utils/dataTypes';
 })
 export class PlayerComponent {
   isFavorite: boolean = false;
-  isPlaying: boolean = false;
   toShuffle: boolean = false;
   repeat: Repeat = Repeat.off;
   repeatEnum = Repeat;
-  // constructor(public repeatState: Repeat) { }
+  isDisabled: boolean = false;
+
+  constructor(public playerServices: PlayerService) { }
+
+  ngOnInit() {
+    this.playerServices.initPlayer();
+  }
+
   addToFavorite() {
-    this.isFavorite=!this.isFavorite;
+    if (!this.isDisabled){
+      this.isFavorite=!this.isFavorite;
+    }
   }
   togglePlayer() {
-    this.isPlaying=!this.isPlaying;
+    if (!this.isDisabled){
+      if (this.playerServices.isPlaying) this.playerServices.pausePlayback().subscribe()
+      else this.playerServices.startPlayback().subscribe()
+      
+    }
   }
   toggleShuffle() {
-    this.toShuffle=!this.toShuffle;
+    if (!this.isDisabled){
+      this.toShuffle=!this.toShuffle;
+    }
   }
   toggleRepeat(state: Repeat) {
+    if (this.isDisabled){
+      return;
+    }
     if (state===this.repeatEnum.off){
       this.repeat = Repeat.on
     }

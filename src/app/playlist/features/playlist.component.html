@@ -1,0 +1,19 @@
+<header *ngIf="playlist" class="header">
+    <div class="header-img">
+        <img src="{{playlist.images[0].url}}"/>
+    </div>
+    <div class="header-description">
+        <span>Playlist</span>
+        <span class="header-title">{{playlist.name}}</span>
+        <span id="palylist-description" *ngIf="playlist.description" class="header-info">
+            {{playlist.description}}
+        </span>
+        <div class="header-user">
+            <a>{{playlist.owner.display_name}}</a>
+            • 
+            <span>{{playlist.tracks.total}}</span> 
+            Songs
+        </div>
+    </div>
+</header>
+<app-tracks *ngIf="playlist" [_Tracks]="playlist"></app-tracks>

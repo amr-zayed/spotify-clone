@@ -18,7 +18,6 @@ export class LibItemComponent {
       this.podcastItem = undefined;
     }
     else if (this.type === 'Playlists') {
-      console.log('playlist')
       this.albumItem = undefined;
       this.playlistItem = item as Playlist;
       this.artistItem = undefined;
@@ -54,18 +53,7 @@ export class LibItemComponent {
   //   console.log("amr")
   //   this.updateItems();
   // }
-  private updateItems(): void{
-    if (this.type==='Playlists') {
-      this.playlistItem = this.item as Playlist;
-    }
-    else if (this.type==='Artists') {
-      this.artistItem = this.item as Artist;
-    }
-    else if (this.type==='Albums') {
-      this.albumItem = this.item as Album;
-    }
-    else if (this.type==='Podcasts & Shows') {
-      this.podcastItem = this.item as Podcast;
-    }
+  openPlaylist(): void{
+    console.log(this.playlistItem?.id)
   }
 }

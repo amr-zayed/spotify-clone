@@ -12,6 +12,11 @@ import { PlayerComponent } from './root/features/player/player.component';
 import { LibraryService } from './root/data-access/library.service';
 import { LibItemComponent } from './root/ui/lib-item/lib-item.component';
 import { SvgComponent } from './shared/features/svg/svg.component';
+import { PlaylistComponent } from './playlist/features/playlist.component';
+import { TracksComponent } from './shared/features/tracks/tracks.component';
+import { TrackComponent } from './track/track/track.component';
+import { ArtistComponent } from './artist/artist/artist.component';
+import { AlbumComponent } from './album/album/album.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,11 @@ import { SvgComponent } from './shared/features/svg/svg.component';
     PlayerComponent,
     LibItemComponent,
     SvgComponent,
+    PlaylistComponent,
+    TracksComponent,
+    TrackComponent,
+    ArtistComponent,
+    AlbumComponent,
   ],
   imports: [
     BrowserModule,

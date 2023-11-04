@@ -14,7 +14,6 @@ export class AppComponent {
   searchOpened: boolean = false;
   
   constructor(private authServces: AuthService,
-    private activeRoute: ActivatedRoute,
     public route: Router,
     private location: Location) { }
     

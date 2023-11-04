@@ -1,44 +1,62 @@
-<div class="player">
+<div class="player" [class.disabled]="playerServices.track===null">
     <div class="player-info">
-        <img src="assets/in-memory-imgs/album-1.jpeg"/>
+        <img 
+        [src]="(playerServices.track)?playerServices.track.album.images[2].url:'assets/untitled.png'"/>
         <div class="song-description">
-            <p class="song-title">Song Name</p>
-            <p class="song-artist">
-                samuel umtiti
-            </p>
+            <a [class.disabled]="playerServices.track===null"
+            class="song-title track-title"
+            routerLink="/track/{{playerServices.track?.id}}">{{(playerServices.track)?playerServices.track.name: 'untitled Song'}}</a>
+            <div [class.disabled]="playerServices.track===null" class="song-artist">
+                <span class="track-artists">
+                    <a 
+                    class="track-artist"
+                    style="color: white;"
+                    *ngFor="let artist of playerServices.track?.artists"
+                    routerLink="/artist/{{artist.id}}">{{artist.name}}, </a>
+                </span>
+            </div>
         </div>
-        <button class="favorite" (click)="addToFavorite()">
-            <app-svg [name]="(isFavorite)?'favorite-filled':'favorite'" [selected]="isFavorite"/>
+        <button (click)="addToFavorite()">
+            <app-svg
+            [class.disabled]="playerServices.track===null"
+            [name]="(isFavorite && !playerServices.track===null)?'favorite-filled':'favorite'"
+            [selected]="isFavorite"/>
         </button>
     </div>
     <div class="player-controls">
         <div class="player-controls-icons">
             <button (click)="toggleShuffle()">
-                <app-svg [name]="'shuffle'" [height]="20" [selected]="toShuffle"/>
+                <app-svg [class.disabled]="playerServices.track===null"
+                [name]="'shuffle'" [height]="20" [selected]="toShuffle"/>
             </button>
             <button>
-                <app-svg [name]="'skip-previous'"/>
+                <app-svg [class.disabled]="playerServices.track===null" [name]="'skip-previous'"/>
             </button>
             <button (click)="togglePlayer()">
-                <app-svg [name]="(isPlaying)?'play':'pause'" [height]="35" [width]="35"/>
+                <app-svg
+                [class.disabled]="playerServices.track===null"
+                [class.play-button]="playerServices.track!==null"
+                [name]="(playerServices.isPlaying)?'pause':'play'"/>
             </button>
             <button>
-                <app-svg [name]="'skip-next'"/>
+                <app-svg
+                [class.disabled]="playerServices.track===null"
+                [name]="'skip-next'"/>
             </button>
             <button [ngSwitch]="true" (click)="toggleRepeat(repeat)">
-                <app-svg *ngSwitchCase="repeat===repeatEnum.off" [name]="'repeat'" [height]="20"/>
-                <app-svg *ngSwitchCase="repeat===repeatEnum.on" [name]="'repeat'" [selected]="true" [height]="20"/>
-                <app-svg *ngSwitchCase="repeat===repeatEnum.one" [name]="'repeat-one'" [selected]="true" [height]="20"/>
+                <app-svg *ngSwitchCase="repeat===repeatEnum.off" [class.disabled]="playerServices.track===null" [name]="'repeat'" [height]="20"/>
+                <app-svg *ngSwitchCase="repeat===repeatEnum.on" [class.disabled]="playerServices.track===null" [name]="'repeat'" [selected]="true" [height]="20"/>
+                <app-svg *ngSwitchCase="repeat===repeatEnum.one" [class.disabled]="playerServices.track===null" [name]="'repeat-one'" [selected]="true" [height]="20"/>
             </button>
         </div>
         <div class="player-controls-progress">
-            <div class="song-artist">
+            <div [class.disabled]="playerServices.track===null" class="song-artist">
                 1:23
             </div>
-            <div class="progress-bar">
-                <div></div>
+            <div [class.disabled]="playerServices.track===null" class="progress-bar">
+                <div [class.disabled]="playerServices.track===null"></div>
             </div>
-            <div class="song-artist">
+            <div [class.disabled]="playerServices.track===null" class="song-artist">
                 3:52
             </div>
         </div>
