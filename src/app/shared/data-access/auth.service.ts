@@ -1,28 +1,67 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, Subscription, defer, interval, map, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { environment } from './../../../environments/environment.development';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../utils/dataTypes';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  subscription!: Subscription;
-  constructor(private http: HttpClient, private route: ActivatedRoute, ) { }
+  user: User | null = null;
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
   
+  initAuth(): void{
+    const token = this.getToken();
+    if (token) {
+      this.getUserInfo(token).subscribe(user=> {
+        if (user){
+          console.log('token valid')
+          this.user=user
+        }else{
+          console.log('token invalid...refreshing token')
+          this.refreshToken().subscribe((resp:any)=>localStorage.setItem('token', resp.access_token))
+        }
+      })
+    }else {
+      console.log('no token found')
+      this.generateToken();
+      this.getUserInfo(this.getToken() as string).subscribe(user=>this.user=user)
+    }
+
+  }
+
+  getUserInfo(token: string): Observable<User | null> {
+    const userInfoUrl = `${environment.apiUrl}me`;
+    
+    let headers = new HttpHeaders()
+    headers = headers.set('Authorization', `Bearer ${token}`)
+    
+    return this.http.get<User>(userInfoUrl,{headers})
+    .pipe(
+      catchError(this.handleError('getUserInfo',null)));
+  };
+
   getToken(): string | null{
     return localStorage.getItem( 'token' );
-  }
+  };
   
   generateToken(){
     const access_token = this.getHashParams();
     if (access_token){
       localStorage.setItem('token', access_token);
     }
+  };
+
+  private refreshToken(){
+    const refreshTokenUrl = `${environment.authUrl}/refresh_token	`
+
+    return this.http.get(refreshTokenUrl, {withCredentials: true})
+    .pipe(
+      catchError(this.handleError('getting refresh token',null)));
   }
-  
   private getHashParams(): string {
     var hashParams = {
       "refresh_token": '',
@@ -36,8 +75,23 @@ export class AuthService {
       }
     }
     return '';
-  }
+  };
   
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+      
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+      
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    
+    }
+  };
+
 }
 
 

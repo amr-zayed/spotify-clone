@@ -1,5 +1,13 @@
 <div #TableBody class="table-container">
-        <div class="table-controls"></div>
+        <div class="table-controls">
+            <button (click)="startTracks()">
+                <app-svg [name]="(playerService.isPlaying && checkIfTracksActive())?'pause':'play'" [width]="60" [height]="60" [selected]="true"/>
+            </button>
+            <button [ngSwitch]="true" (click)="toggleFavorite()">
+                <app-svg *ngSwitchCase="isFavorite" [name]="'favorite-filled'" [width]="40" [height]="40" [selected]="true"/>
+                <app-svg *ngSwitchCase="!isFavorite" [name]="'favorite'" [width]="40" [height]="40"/>
+            </button>
+        </div>
         <table class="table" *ngIf="Tracks" >
             <tr class="table-header">
                 <div class="table-col-1">
@@ -10,7 +18,7 @@
                 <th>Date added</th>
                 <th><app-svg [name]="'time'" [width]="18" [height]="18"></app-svg></th>
             </tr>
-            <tr class="table-data" *ngFor="let track of Tracks.tracks.items; index as i" (click)="playTrack(track.track)">
+            <tr class="table-data" *ngFor="let track of Tracks.tracks.items; index as i" (click)="playTrack(track.track, i)">
                 <div class="table-col-1">
                     <td class="table-index">{{i + 1}}</td>
                     <td class="table-title">

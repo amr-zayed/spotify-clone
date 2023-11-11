@@ -24,7 +24,6 @@ export class PlaylistComponent {
         tempPlaylist.description = '';
       }
       this.playlist=tempPlaylist
-      console.log(this.playlist);
     });
     this.router.events.pipe(filter(event => event instanceof NavigationEnd))
     .subscribe(_=>{

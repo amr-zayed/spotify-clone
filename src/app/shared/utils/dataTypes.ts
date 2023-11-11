@@ -1,12 +1,3 @@
-export interface AlbumsResp {
-    href: string,
-    limit: number,
-    next: number,
-    offset: number,
-    previous: number,
-    total: number,
-    items: Album[]
-}
 export interface Album {
     added_at: string,
     album:{
@@ -72,28 +63,12 @@ export interface Playlist {
     public: boolean,
     tracks: {
         href: string,
-        items: {
-            added_at: string,
-            added_by: {
-                external_urls: {
-                    href: string,
-                    id: string,
-                    type: string,
-                    uri: string
-                }, 
-                href: string, 
-                id: string, 
-                type: string,
-                uri: string
-            }
-            is_local: false,
-            track: Track
-        }[],
         limit: number,
         next: number,
         offset: number,
         previous: number,
         total: number,
+        items: PlaylistTrack[],
     },
     owner: {
         display_name: string,
@@ -102,16 +77,8 @@ export interface Playlist {
         id: string
         type: string
         uri: string
-    }
-}
-export interface PlaylistsResp {
-    href: string,
-    limit: number,
-    next: string,
-    offset: number,
-    previous: number,
-    total: number,
-    items: Playlist[],
+    },
+    uri: string
 }
 
 export interface Podcast {
@@ -141,21 +108,16 @@ export interface Podcast {
         total_episodes: number
     }
 }
-export interface PodcastsResp {
-    href: string,
-    limit: number,
-    next: string,
-    offset: number,
-    previous: number,
-    total: number,
-    items: Podcast[]
-}
 
 export interface image {
     url:string,
     height: number,
     width: number,
 }
+
+
+
+
 export interface SimplifiedTrack {
     artists: [
     {
@@ -196,6 +158,23 @@ export interface SimplifiedTrack {
     type: string,
     uri: string,
     is_local: boolean
+}
+export interface PlaylistTrack {
+    added_at: string,
+    added_by: {
+        external_urls: {
+            href: string,
+            id: string,
+            type: string,
+            uri: string
+        }, 
+        href: string, 
+        id: string, 
+        type: string,
+        uri: string
+    }
+    is_local: false,
+    track: Spotify.Track
 }
 export interface Track {
     album: {
@@ -280,10 +259,40 @@ export interface Track {
     uri: string,
     is_local: boolean
 }
+
+export interface User{
+    country: string,
+    display_name: string,
+    email: string,
+    explicit_content: {
+        filter_enabled: boolean,
+        filter_locked: boolean
+    },
+    external_urls: {
+        spotify: string
+    },
+    followers: {
+        href: string,
+        total: number
+    },
+    href: string,
+    id: string,
+    images: [
+        {
+        url: string,
+        height: number,
+        width: number
+        }
+    ],
+    product: string,
+    type: string,
+    uri: string
+}
+
 export enum Repeat {
-    on,
-    off,
-    one
+    'context',
+    'off',
+    'track'
 }
 export enum ObjType {
     playlist,

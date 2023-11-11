@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Album, AlbumsResp, Artist, ArtistsResp, Playlist, PlaylistsResp, Podcast, PodcastsResp } from '../../shared/utils/dataTypes';
+import { Album, Artist, ArtistsResp, Playlist, Podcast } from '../../shared/utils/dataTypes';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/data-access/auth.service';
 import { environment } from 'src/environments/environment.development';
+import { AlbumsResp, PlaylistsResp, PodcastsResp } from 'src/app/shared/utils/responsesDataTypes';
 
 @Injectable({
   providedIn: 'root'

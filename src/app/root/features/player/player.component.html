@@ -1,4 +1,4 @@
-<div class="player" [class.disabled]="playerServices.track===null">
+<div class="player" [class.disabled]="playerServices.track!==null">
     <div class="player-info">
         <img 
         [src]="(playerServices.track)?playerServices.track.album.images[2].url:'assets/untitled.png'"/>
@@ -19,17 +19,17 @@
         <button (click)="addToFavorite()">
             <app-svg
             [class.disabled]="playerServices.track===null"
-            [name]="(isFavorite && !playerServices.track===null)?'favorite-filled':'favorite'"
-            [selected]="isFavorite"/>
+            [name]="(playerServices.isFavourite && playerServices.track!==null)?'favorite-filled':'favorite'"
+            [selected]="playerServices.isFavourite"/>
         </button>
     </div>
     <div class="player-controls">
         <div class="player-controls-icons">
             <button (click)="toggleShuffle()">
                 <app-svg [class.disabled]="playerServices.track===null"
-                [name]="'shuffle'" [height]="20" [selected]="toShuffle"/>
+                [name]="'shuffle'" [height]="20" [selected]="playerServices.shuffleEnabled"/>
             </button>
-            <button>
+            <button (click)="playPrevioustrack()">
                 <app-svg [class.disabled]="playerServices.track===null" [name]="'skip-previous'"/>
             </button>
             <button (click)="togglePlayer()">
@@ -38,24 +38,22 @@
                 [class.play-button]="playerServices.track!==null"
                 [name]="(playerServices.isPlaying)?'pause':'play'"/>
             </button>
-            <button>
+            <button (click)="playNexttrack()">
                 <app-svg
                 [class.disabled]="playerServices.track===null"
                 [name]="'skip-next'"/>
             </button>
-            <button [ngSwitch]="true" (click)="toggleRepeat(repeat)">
-                <app-svg *ngSwitchCase="repeat===repeatEnum.off" [class.disabled]="playerServices.track===null" [name]="'repeat'" [height]="20"/>
-                <app-svg *ngSwitchCase="repeat===repeatEnum.on" [class.disabled]="playerServices.track===null" [name]="'repeat'" [selected]="true" [height]="20"/>
-                <app-svg *ngSwitchCase="repeat===repeatEnum.one" [class.disabled]="playerServices.track===null" [name]="'repeat-one'" [selected]="true" [height]="20"/>
+            <button [ngSwitch]="true" (click)="toggleRepeat()">
+                <app-svg *ngSwitchCase="this.playerServices.repeatMode==='OFF'" [class.disabled]="playerServices.track===null" [name]="'repeat'" [height]="20"/>
+                <app-svg *ngSwitchCase="this.playerServices.repeatMode==='CONTEXT'" [class.disabled]="playerServices.track===null" [name]="'repeat'" [selected]="true" [height]="20"/>
+                <app-svg *ngSwitchCase="this.playerServices.repeatMode==='TRACK'" [class.disabled]="playerServices.track===null" [name]="'repeat-one'" [selected]="true" [height]="20"/>
             </button>
         </div>
         <div class="player-controls-progress">
             <div [class.disabled]="playerServices.track===null" class="song-artist">
                 1:23
             </div>
-            <div [class.disabled]="playerServices.track===null" class="progress-bar">
-                <div [class.disabled]="playerServices.track===null"></div>
-            </div>
+            <input id="track-progress-bar" type="range" class="progress-bar" [min]="0" [max]="100" step="0.1" matSliderThumb [value]="progressBarVal()" #ref (input)="clicked()" (change)="released(ref.value)">
             <div [class.disabled]="playerServices.track===null" class="song-artist">
                 3:52
             </div>

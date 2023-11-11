@@ -47,6 +47,16 @@ app-svg[disabled]{
 app-svg:hover:enabled{
     fill: var(--text-base);
 }
+
+.mat-primary .mdc-slider__thumb {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.14),
+    0 3px 1px rgba(0, 0, 0, 0.12),
+    0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
 .main-view-child{
     display: flex;
     flex: 1;
@@ -62,6 +72,7 @@ app-svg:hover:enabled{
     --background-tinted-base: hsla(0, 0%, 0%, 0.425);
     --background-tinted-highlight: hsla(0, 0%, 0%, 0.628);
     --background-tinted-press: hsla(0, 0%, 0%, 0.326);
+    --table-tinted-background: hsla(0, 0%, 16%, 0.118);
     --background-unsafe-for-small-text-base: #121212;
     --background-unsafe-for-small-text-highlight: #121212;
     --background-unsafe-for-small-text-press: #121212;
@@ -85,3 +96,5 @@ app-svg:hover:enabled{
     --decorative-subdued: #292929;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
