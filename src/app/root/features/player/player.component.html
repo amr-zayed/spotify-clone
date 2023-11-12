@@ -1,4 +1,4 @@
-<div class="player" [class.disabled]="playerServices.track!==null">
+<div class="player" [class.disabled]="playerServices.track===null">
     <div class="player-info">
         <img 
         [src]="(playerServices.track)?playerServices.track.album.images[2].url:'assets/untitled.png'"/>
@@ -53,7 +53,7 @@
             <div [class.disabled]="playerServices.track===null" class="song-artist">
                 1:23
             </div>
-            <input id="track-progress-bar" type="range" class="progress-bar" [min]="0" [max]="100" step="0.1" matSliderThumb [value]="progressBarVal()" #ref (input)="clicked()" (change)="released(ref.value)">
+            <input [disabled]="playerServices.track===null" id="track-progress-bar" type="range" class="progress-bar" [min]="0" [max]="100" step="0.1" matSliderThumb [value]="progressBarVal()" #ref (input)="clicked()" (change)="released(ref.value)">
             <div [class.disabled]="playerServices.track===null" class="song-artist">
                 3:52
             </div>

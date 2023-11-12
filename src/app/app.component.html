@@ -4,10 +4,10 @@
     <div class="main-view" style="grid-area: main-view;">
       <header>
         <div class="navigations">
-          <button>
+          <button (click)="goback()">
             <app-svg [name]="'arrow-back'" />
           </button>
-          <button>
+          <button (click)="goforward()">
             <app-svg [name]="'arrow-forward'"/>
           </button>
         </div>

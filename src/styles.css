@@ -91,6 +91,7 @@ app-svg:hover:enabled{
     --essential-negative: #e91429;
     --essential-warning: #ffa42b;
     --essential-positive: #1ed760;
+    --essential-positive-disabled: rgb(18, 117, 53);
     --essential-announcement: #0d72ea;
     --decorative-base: #fff;
     --decorative-subdued: #292929;

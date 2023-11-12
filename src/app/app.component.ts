@@ -18,9 +18,10 @@ export class AppComponent {
   constructor(private authServces: AuthService,
     public route: Router,
     private location: Location,
-    private overlayContainer: OverlayContainer) { }
+    private overlayContainer: OverlayContainer,) { }
     
   ngOnInit(): void{
+    console.log(this.location)
     this.overlayContainer.getContainerElement().classList.add('unicorn-dark-theme');
 
     this.authServces.initAuth();
@@ -33,5 +34,13 @@ export class AppComponent {
     
   login(): void{
     document.location = `${environment.authUrl}/login`
+  }
+
+  goback(){
+    console.log('vfcrvgfcd')
+    this.location.back()
+  }
+  goforward(){
+    this.location.forward()
   }
 }

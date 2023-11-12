@@ -81,7 +81,16 @@
     gap: 8px;
 }
 
+.progress-bar:disabled {
+    cursor: not-allowed;
+    background: var(--decorative-subdued);
+}
+.progress-bar:disabled::-webkit-slider-thumb {
+    background: var(--essential-positive-disabled);
+    cursor: not-allowed;
+}
 .progress-bar::-webkit-slider-thumb {
+    cursor: pointer;
     -webkit-appearance: none;
     border: none;
     height: 10px;
@@ -90,6 +99,7 @@
     background: var(--essential-positive);
 }
 .progress-bar{
+    cursor: pointer;
     flex-grow: 1;
     -webkit-appearance: none;
     appearance: none;
