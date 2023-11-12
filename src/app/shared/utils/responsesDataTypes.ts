@@ -29,6 +29,15 @@ export interface AlbumsResp {
     total: number,
     items: Album[]
 }
+export interface topItems {
+    href: string,
+    limit: number,
+    next: number,
+    offset: number,
+    previous: number,
+    total: number,
+    items: Spotify.Track[]
+}
 
 export interface currenSongResp {
     device: {

@@ -26,20 +26,20 @@ export class LibraryService {
       map(resp=>resp.items),
       catchError(this.handleError<Album[]>('getAlbums',[]))
       );
-    }
+  }
     
-    getArtists(): Observable<Artist[]>{
-      let headers = new HttpHeaders()
-      headers = headers.set('Authorization', `Bearer ${this.auth.getToken()}`)
-      return this.http.get<ArtistsResp>(this.artistsUrl, { headers })
-      .pipe(
-        map( resp => resp.artists.items),
-        catchError(this.handleError<Artist[]>('getArtists',[]))
-        );
-      }
+  getArtists(): Observable<Artist[]>{
+    let headers = new HttpHeaders()
+    headers = headers.set('Authorization', `Bearer ${this.auth.getToken()}`)
+    return this.http.get<ArtistsResp>(this.artistsUrl, { headers })
+    .pipe(
+      map( resp => resp.artists.items),
+      catchError(this.handleError<Artist[]>('getArtists',[]))
+      );
+  }
       
-      getPlaylists(): Observable<Playlist[]> {
-        let headers = new HttpHeaders()
+  getPlaylists(): Observable<Playlist[]> {
+    let headers = new HttpHeaders()
     headers = headers.set('Authorization', `Bearer ${this.auth.getToken()}`)
     return this.http.get<PlaylistsResp>(this.playlistsUrl, {headers})
     .pipe(

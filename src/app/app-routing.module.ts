@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, provideRouter, withComponentInputBinding } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './home/features/home.component';
 import { SearchComponent } from './search/search.component';
 import { PlaylistComponent } from './playlist/features/playlist.component';
 import { TrackComponent } from './track/track/track.component';

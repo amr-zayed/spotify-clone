@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './root/features/nav-bar/nav-bar.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './home/features/home.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';

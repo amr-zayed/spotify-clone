@@ -23,6 +23,7 @@ export class TracksService {
     .pipe(
       catchError(this.handleError('getPlaylists',[false])));
   }
+  
   followPlaylists(playlistId: string): Observable<null> {
     const followPlaylistUrl = `${environment.apiUrl}playlists/${playlistId}/followers`;
     
@@ -34,6 +35,7 @@ export class TracksService {
     .pipe(
       catchError(this.handleError('getPlaylists',null)));
   }
+
   unfollowPlaylists(playlistId: string): Observable<null> {
     const followPlaylistUrl = `${environment.apiUrl}playlists/${playlistId}/followers`;
     
