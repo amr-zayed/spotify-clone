@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 import { AuthService } from 'src/app/shared/data-access/auth.service';
-import { Playlist } from 'src/app/shared/utils/dataTypes';
+import { Artists, ArtistsResp, Playlist, Track } from 'src/app/shared/utils/dataTypes';
 import { PlaylistsResp } from 'src/app/shared/utils/responsesDataTypes';
 import { environment } from 'src/environments/environment.development';
 
@@ -39,15 +39,20 @@ export class HomeService {
     .pipe(
       catchError(this.handleError('getUserFeaturedPlaylists',null)));
   }
-  getPlaylistsByCategory(type: 'artists' | 'tracks'): Observable<playlistItems | null> {
+  getPlaylistsByCategory(type: 'artists' | 'tracks'): Observable<Artists | null> {
     const browseCategoriesUrl = `${environment.apiUrl}me/top/${type}`;
     
     let headers = new HttpHeaders()
     headers = headers.set('Authorization', `Bearer ${this.auth.getToken()}`)
-    
-    return this.http.get<playlistItems>(browseCategoriesUrl,{headers})
-    .pipe(
-      catchError(this.handleError('getUserFeaturedPlaylists',null)));
+    if (type==='artists'){
+      return this.http.get<Artists>(browseCategoriesUrl,{headers})
+      .pipe(
+        catchError(this.handleError('getUserFeaturedPlaylists',null)));
+      }else{
+        return this.http.get<Artists>(browseCategoriesUrl,{headers})
+        .pipe(
+          catchError(this.handleError('getUserFeaturedPlaylists',null)));
+    }
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

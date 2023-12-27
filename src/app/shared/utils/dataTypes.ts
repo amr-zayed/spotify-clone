@@ -44,14 +44,15 @@ export interface Artist {
     type: Artist,
     uri: string
 }
-export interface ArtistsResp {
-    artists: {
+export interface Artists{
     href: string,
     limit: number,
     next: string,
     total: number,
     items: Artist[]
-    }
+}
+export interface ArtistsResp {
+    artists: Artists 
 }
 
 export interface Playlist {

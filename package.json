@@ -9,7 +9,8 @@
     "test": "ng test",
     "prestart": "npm run svg",
     "prebuild": "npm run svg",
-    "svg": "svg-generator"
+    "svg": "svg-generator",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -25,22 +26,34 @@
     "@angular/router": "^16.2.0",
     "@types/spotify-web-playback-sdk": "^0.1.18",
     "angular-in-memory-web-api": "^0.16.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "moment": "^2.29.4",
+    "prettier-eslint": "^16.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.6",
+    "@angular-eslint/builder": "16.3.1",
+    "@angular-eslint/eslint-plugin": "16.3.1",
+    "@angular-eslint/eslint-plugin-template": "16.3.1",
+    "@angular-eslint/schematics": "16.3.1",
+    "@angular-eslint/template-parser": "16.3.1",
     "@angular/cli": "^16.2.6",
     "@angular/compiler-cli": "^16.2.0",
     "@types/jasmine": "~4.3.0",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "5.62.0",
+    "eslint": "^8.51.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.1.0",
     "typescript": "~5.1.3"
   }
 }
